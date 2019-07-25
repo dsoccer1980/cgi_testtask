@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Testtask</title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body>
+
+<br>
+<br>
+
+<p th:text="${user_name}"></p>
+<form method="post" action="accept" name="myForm">
+
+
+    <input type="hidden" name="name" th:value="${user_id}" required> <br><br>
+
+    <br>
+    <br>
+
+    <input type="submit" value="Save" id="submitButton">
+</form>
+
+<table>
+    <th:block th:each="number : ${numbers}">
+        <tr>
+            <td th:text="${number}">...</td>
+
+        </tr>
+    </th:block>
+</table>
+
+
+</body>
+</html>

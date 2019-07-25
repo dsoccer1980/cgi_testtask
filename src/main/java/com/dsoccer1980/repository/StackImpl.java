@@ -43,6 +43,6 @@ public class StackImpl implements Stack {
 
     @Override
     public List<Integer> view(User user) {
-        return stackEntityRepository.findAll().stream().map(StackEntity::getNumber).collect(Collectors.toList());
+        return stackEntityRepository.findByUserId(user.getId()).stream().map(StackEntity::getNumber).collect(Collectors.toList());
     }
 }

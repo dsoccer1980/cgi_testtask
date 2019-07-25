@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface StackEntityRepository extends JpaRepository<StackEntity, Integer> {
@@ -13,6 +14,8 @@ public interface StackEntityRepository extends JpaRepository<StackEntity, Intege
     Optional<Integer> getMaxId(@Param("userId") int userId);
 
     void deleteByUserId(int userId);
+
+    List<StackEntity> findByUserId(int userId);
 
 
 }
