@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cgi_db
+    username: postgres
+    password: postgres
+    initialization-mode: never
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+
