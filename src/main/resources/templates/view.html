@@ -14,24 +14,16 @@
     Hi, <span th:text="${user_name}" th:remove="tag">User</span>!
 </H3>
 
-<H4 th:if="${numbers.size() == 0}">Your stack is empty</H4>
 
-<H4 th:if="${numbers.size() != 0}">Your stack:</H4>
 
 <table>
-    <th:block th:each="number : ${numbers}">
-        <tr>
-            <td th:text="${number}">...</td>
-
-        </tr>
-    </th:block>
-</table>
-
+    <tr>
+        <td>
 <b>Operations with stack:</b>
 
 <form method="get" action="push">
     <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
-    Number <input type="text" name="number"> <br>
+    Number <input type="text" name="number" required> <br>
     <input type="submit" value="Push">
 </form>
 
@@ -44,6 +36,25 @@
     <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
     <input type="submit" value="Reset">
 </form>
+        </td>
+
+        <td>
+            <H4 th:if="${numbers.size() == 0}">Your stack is empty</H4>
+
+            <H4 th:if="${numbers.size() != 0}">Your stack:</H4>
+
+            <table>
+                <th:block th:each="number : ${numbers}">
+                    <tr>
+                        <td th:text="${number}">...</td>
+
+                    </tr>
+                </th:block>
+            </table>
+
+        </td>
+    </tr>
+</table>
 
 
 <p th:if="${stack_empty == 'true'}">You've tried to pop number from empty stack</p>
