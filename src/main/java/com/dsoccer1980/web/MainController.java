@@ -40,16 +40,20 @@ public class MainController {
             stack.pop(user);
         } catch (NoSuchElementException e) {
             user = userRepository.getOne(userId);
-            model.addAttribute("stack_empty", "true");
+            model.addAttribute("stack_empty_error", "true");
         }
 
         return returnView(model, user);
     }
 
     @GetMapping("/push")
-    public String push(@RequestParam(value = "user_id") int userId, @RequestParam(value = "number") int number, Model model) {
+    public String push(@RequestParam(value = "user_id") int userId, @RequestParam(value = "number") String numberText, Model model) {
         User user = userRepository.getOne(userId);
-        stack.push(user, number);
+        try {
+            int number = Integer.parseInt(numberText);
+            stack.push(user, number);
+        } catch (NumberFormatException e) {
+        }
 
         return returnView(model, user);
     }

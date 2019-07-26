@@ -41,7 +41,7 @@ class StackEntityRepositoryImplTest {
 
     @Test
     void viewForUser1() {
-        assertThat(stackEntityRepository.view(USER1)).isEqualTo(Arrays.asList(7, 3, 2));
+        assertThat(stackEntityRepository.view(USER1)).isEqualTo(Arrays.asList(2, 3, 7));
     }
 
     @Test
@@ -52,19 +52,19 @@ class StackEntityRepositoryImplTest {
     @Test
     void pushForUser1() {
         stackEntityRepository.push(USER1, 10);
-        assertThat(stackEntityRepository.view(USER1)).isEqualTo(Arrays.asList(7, 3, 2, 10));
+        assertThat(stackEntityRepository.view(USER1)).isEqualTo(Arrays.asList(10, 2, 3, 7));
     }
 
     @Test
     void pushForUser2() {
         stackEntityRepository.push(USER2, 11);
-        assertThat(stackEntityRepository.view(USER2)).isEqualTo(Arrays.asList(99, 11));
+        assertThat(stackEntityRepository.view(USER2)).isEqualTo(Arrays.asList(11, 99));
     }
 
     @Test
     void popForUser1() {
         stackEntityRepository.pop(USER1);
-        assertThat(stackEntityRepository.view(USER1)).isEqualTo(Arrays.asList(7, 3));
+        assertThat(stackEntityRepository.view(USER1)).isEqualTo(Arrays.asList(3, 7));
     }
 
     @Test

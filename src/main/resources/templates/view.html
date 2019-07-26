@@ -15,27 +15,26 @@
 </H3>
 
 
-
 <table>
     <tr>
         <td>
-<b>Operations with stack:</b>
+            <b>Operations with stack:</b>
 
-<form method="get" action="push">
-    <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
-    Number <input type="text" name="number" required> <br>
-    <input type="submit" value="Push">
-</form>
+            <form method="get" action="push">
+                <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
+                Number <input type="text" name="number" required> <br>
+                <input type="submit" value="Push">
+            </form>
 
-<form method="get" action="pop">
-    <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
-    <input type="submit" value="Pop">
-</form>
+            <form method="get" action="pop">
+                <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
+                <input type="submit" value="Pop" th:disabled="${numbers.size()} == 0?true:false">
+            </form>
 
-<form method="get" action="reset">
-    <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
-    <input type="submit" value="Reset">
-</form>
+            <form method="get" action="reset">
+                <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
+                <input type="submit" value="Reset">
+            </form>
         </td>
 
         <td>
@@ -57,9 +56,9 @@
 </table>
 
 
-<p th:if="${stack_empty == 'true'}">You've tried to pop number from empty stack</p>
+<p th:if="${stack_empty_error == 'true'}">You've tried to pop number from empty stack</p>
 
-
+<br><br><br>
 <a th:href="@{/logout}">logout</a>
 
 

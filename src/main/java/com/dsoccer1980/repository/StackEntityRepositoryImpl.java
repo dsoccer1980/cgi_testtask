@@ -5,6 +5,7 @@ import com.dsoccer1980.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -39,6 +40,11 @@ public class StackEntityRepositoryImpl implements StackEntityRepository {
 
     @Override
     public List<Integer> view(User user) {
-        return stackEntityRepository.findByUserId(user.getId()).stream().map(StackEntity::getNumber).collect(Collectors.toList());
+        return stackEntityRepository
+                .findByUserId(user.getId())
+                .stream()
+                .sorted(Comparator.comparingInt(StackEntity::getId).reversed())
+                .map(StackEntity::getNumber)
+                .collect(Collectors.toList());
     }
 }
