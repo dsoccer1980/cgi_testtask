@@ -1,6 +1,6 @@
 package com.dsoccer1980.web;
 
-import com.dsoccer1980.dto.Dto;
+import com.dsoccer1980.dto.UserNumbersDto;
 import com.dsoccer1980.model.User;
 import com.dsoccer1980.service.StackService;
 import org.springframework.stereotype.Controller;
@@ -30,26 +30,26 @@ public class MainController {
 
     @GetMapping("/pop")
     public String pop(@RequestParam(value = "user_id") int userId, Model model) {
-        Dto dto = stackService.pop(userId);
-        return returnView(model, dto);
+        UserNumbersDto userNumbersDto = stackService.pop(userId);
+        return returnView(model, userNumbersDto);
     }
 
     @GetMapping("/push")
     public String push(@RequestParam(value = "user_id") int userId, @RequestParam(value = "number") String numberText, Model model) {
-        Dto dto = stackService.push(userId, numberText);
-        return returnView(model, dto);
+        UserNumbersDto userNumbersDto = stackService.push(userId, numberText);
+        return returnView(model, userNumbersDto);
     }
 
     @GetMapping("/reset")
     public String reset(@RequestParam(value = "user_id") int userId, Model model) {
-        Dto dto = stackService.reset(userId);
-        return returnView(model, dto);
+        UserNumbersDto userNumbersDto = stackService.reset(userId);
+        return returnView(model, userNumbersDto);
     }
 
-    private String returnView(Model model, Dto dto) {
-        model.addAttribute("user_name", dto.getUserName());
-        model.addAttribute("user_id", dto.getUserId());
-        model.addAttribute("numbers", dto.getNumbers());
+    private String returnView(Model model, UserNumbersDto userNumbersDto) {
+        model.addAttribute("user_name", userNumbersDto.getUserName());
+        model.addAttribute("user_id", userNumbersDto.getUserId());
+        model.addAttribute("numbers", userNumbersDto.getNumbers());
         return "view";
     }
 

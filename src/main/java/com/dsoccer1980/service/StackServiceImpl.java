@@ -1,6 +1,6 @@
 package com.dsoccer1980.service;
 
-import com.dsoccer1980.dto.Dto;
+import com.dsoccer1980.dto.UserNumbersDto;
 import com.dsoccer1980.model.User;
 import com.dsoccer1980.repository.StackEntityRepositoryImpl;
 import com.dsoccer1980.repository.UserRepository;
@@ -23,18 +23,18 @@ public class StackServiceImpl implements StackService {
     }
 
     @Override
-    public Dto pop(int userId) {
+    public UserNumbersDto pop(int userId) {
         User user = userRepository.getOne(userId);
         try {
             stack.pop(user);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        return new Dto(user.getName(), user.getId(), stack.view(user));
+        return new UserNumbersDto(user.getName(), user.getId(), stack.view(user));
     }
 
     @Override
-    public Dto push(int userId, String numberText) {
+    public UserNumbersDto push(int userId, String numberText) {
         User user = userRepository.getOne(userId);
         try {
             int number = Integer.parseInt(numberText);
@@ -43,20 +43,20 @@ public class StackServiceImpl implements StackService {
             e.printStackTrace();
         }
 
-        return new Dto(user.getName(), user.getId(), stack.view(user));
+        return new UserNumbersDto(user.getName(), user.getId(), stack.view(user));
     }
 
     @Override
-    public Dto reset(int userId) {
+    public UserNumbersDto reset(int userId) {
         User user = userRepository.getOne(userId);
         stack.reset(user);
 
-        return new Dto(user.getName(), user.getId(), stack.view(user));
+        return new UserNumbersDto(user.getName(), user.getId(), stack.view(user));
     }
 
     @Override
-    public Dto getDto(User user) {
-        return new Dto(user.getName(), user.getId(), stack.view(user));
+    public UserNumbersDto getDto(User user) {
+        return new UserNumbersDto(user.getName(), user.getId(), stack.view(user));
     }
 
 

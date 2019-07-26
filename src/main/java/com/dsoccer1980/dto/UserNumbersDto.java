@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class Dto {
+public class UserNumbersDto {
 
     private String userName;
     private int userId;
