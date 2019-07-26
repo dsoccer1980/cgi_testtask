@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 @Repository
 @Transactional
-public class StackImpl implements Stack {
+public class StackEntityRepositoryImpl implements StackEntityRepository {
 
-    private final StackEntityRepository stackEntityRepository;
+    private final JpaStackEntityRepository stackEntityRepository;
 
-    public StackImpl(StackEntityRepository stackEntityRepository) {
+    public StackEntityRepositoryImpl(JpaStackEntityRepository stackEntityRepository) {
         this.stackEntityRepository = stackEntityRepository;
     }
 

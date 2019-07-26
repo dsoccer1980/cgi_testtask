@@ -1,13 +1,8 @@
 package com.dsoccer1980;
 
-import com.dsoccer1980.model.User;
-import com.dsoccer1980.repository.StackImpl;
-import com.dsoccer1980.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.util.Optional;
 
 @SpringBootApplication
 public class Main {

@@ -1,21 +1,17 @@
 package com.dsoccer1980.repository;
 
-import com.dsoccer1980.model.StackEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import com.dsoccer1980.model.User;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
-public interface StackEntityRepository extends JpaRepository<StackEntity, Integer> {
+public interface StackEntityRepository {
 
-    @Query("Select Max(s.id) From StackEntity s Where s.user.id=:userId")
-    Optional<Integer> getMaxId(@Param("userId") int userId);
+    void push(User user, int e);
 
-    void deleteByUserId(int userId);
+    int pop(User user) throws NoSuchElementException;
 
-    List<StackEntity> findByUserId(int userId);
+    void reset(User user);
 
-
+    List<Integer> view(User user);
 }

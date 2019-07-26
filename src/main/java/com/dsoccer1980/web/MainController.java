@@ -1,7 +1,7 @@
 package com.dsoccer1980.web;
 
 import com.dsoccer1980.model.User;
-import com.dsoccer1980.repository.StackImpl;
+import com.dsoccer1980.repository.StackEntityRepositoryImpl;
 import com.dsoccer1980.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +16,9 @@ import java.util.NoSuchElementException;
 public class MainController {
 
     private final UserRepository userRepository;
-    private final StackImpl stack;
+    private final StackEntityRepositoryImpl stack;
 
-    public MainController(UserRepository userRepository, StackImpl stack) {
+    public MainController(UserRepository userRepository, StackEntityRepositoryImpl stack) {
         this.userRepository = userRepository;
         this.stack = stack;
     }
