@@ -10,20 +10,14 @@
 <br>
 <br>
 
-<p th:text="${user_name}"></p>
-<form method="post" action="push">
+<H3>
+    Hi, <span th:text="${user_name}" th:remove="tag">User</span>!
+</H3>
 
-    <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
+<H4 th:if="${numbers.size() == 0}">Your stack is empty</H4>
 
-    Number <input type="text" name="number"> <br>
+<H4 th:if="${numbers.size() != 0}">Your stack:</H4>
 
-    <input type="submit" value="Push">
-</form>
-
-<a th:href="@{/pop(user_id=${user_id})}">pop</a> <br>
-<a th:href="@{/reset(user_id=${user_id})}">reset</a>
-<p th:if="${numbers.size() == 0}">Your stack is empty</p>
-<p th:if="${stack_empty == 'true'}">You've tried to pop number from empty stack</p>
 <table>
     <th:block th:each="number : ${numbers}">
         <tr>
@@ -32,6 +26,28 @@
         </tr>
     </th:block>
 </table>
+
+<b>Operations with stack:</b>
+
+<form method="get" action="push">
+    <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
+    Number <input type="text" name="number"> <br>
+    <input type="submit" value="Push">
+</form>
+
+<form method="get" action="pop">
+    <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
+    <input type="submit" value="Pop">
+</form>
+
+<form method="get" action="reset">
+    <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
+    <input type="submit" value="Reset">
+</form>
+
+
+<p th:if="${stack_empty == 'true'}">You've tried to pop number from empty stack</p>
+
 
 <a th:href="@{/logout}">logout</a>
 

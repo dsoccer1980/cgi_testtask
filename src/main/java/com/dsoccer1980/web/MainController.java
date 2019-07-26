@@ -6,7 +6,6 @@ import com.dsoccer1980.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class MainController {
         return returnView(model, user);
     }
 
-    @PostMapping("/push")
+    @GetMapping("/push")
     public String push(@RequestParam(value = "user_id") int userId, @RequestParam(value = "number") int number, Model model) {
         User user = userRepository.getOne(userId);
         stack.push(user, number);
