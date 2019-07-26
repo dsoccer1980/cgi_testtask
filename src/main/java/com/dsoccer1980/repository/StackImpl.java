@@ -14,13 +14,10 @@ import java.util.stream.Collectors;
 public class StackImpl implements Stack {
 
     private final StackEntityRepository stackEntityRepository;
-    private final UserRepository userRepository;
 
-    public StackImpl(StackEntityRepository stackEntityRepository, UserRepository userRepository) {
+    public StackImpl(StackEntityRepository stackEntityRepository) {
         this.stackEntityRepository = stackEntityRepository;
-        this.userRepository = userRepository;
     }
-
 
     @Override
     public void push(User user, int e) {
@@ -38,7 +35,6 @@ public class StackImpl implements Stack {
     @Override
     public void reset(User user) {
         stackEntityRepository.deleteByUserId(user.getId());
-
     }
 
     @Override

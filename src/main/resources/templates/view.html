@@ -11,17 +11,19 @@
 <br>
 
 <p th:text="${user_name}"></p>
-<form method="post" action="accept" name="myForm">
+<form method="post" action="push">
 
+    <input type="hidden" name="user_id" th:value="${user_id}"> <br><br>
 
-    <input type="hidden" name="name" th:value="${user_id}" required> <br><br>
+    Number <input type="text" name="number"> <br>
 
-    <br>
-    <br>
-
-    <input type="submit" value="Save" id="submitButton">
+    <input type="submit" value="Push">
 </form>
 
+<a th:href="@{/pop(user_id=${user_id})}">pop</a> <br>
+<a th:href="@{/reset(user_id=${user_id})}">reset</a>
+<p th:if="${numbers.size() == 0}">Your stack is empty</p>
+<p th:if="${stack_empty == 'true'}">You've tried to pop number from empty stack</p>
 <table>
     <th:block th:each="number : ${numbers}">
         <tr>
@@ -30,6 +32,8 @@
         </tr>
     </th:block>
 </table>
+
+<a th:href="@{/logout}">logout</a>
 
 
 </body>
