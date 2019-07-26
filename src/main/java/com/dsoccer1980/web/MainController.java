@@ -1,25 +1,20 @@
 package com.dsoccer1980.web;
 
+import com.dsoccer1980.dto.Dto;
 import com.dsoccer1980.model.User;
-import com.dsoccer1980.repository.StackEntityRepositoryImpl;
-import com.dsoccer1980.repository.UserRepository;
+import com.dsoccer1980.service.StackService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-
 @Controller
 public class MainController {
 
-    private final UserRepository userRepository;
-    private final StackEntityRepositoryImpl stack;
+    private final StackService stackService;
 
-    public MainController(UserRepository userRepository, StackEntityRepositoryImpl stack) {
-        this.userRepository = userRepository;
-        this.stack = stack;
+    public MainController(StackService stackService) {
+        this.stackService = stackService;
     }
 
     @GetMapping({"/", "/logout"})
@@ -29,48 +24,32 @@ public class MainController {
 
     @GetMapping("/accept")
     public String accept(@RequestParam(value = "name") String name, Model model) {
-        User user = userRepository.findByName(name).orElseGet(() -> userRepository.save(new User(name)));
-        return returnView(model, user);
+        User user = stackService.getOrCreateUserByName(name);
+        return returnView(model, stackService.getDto(user));
     }
 
     @GetMapping("/pop")
     public String pop(@RequestParam(value = "user_id") int userId, Model model) {
-        User user = userRepository.getOne(userId);
-        try {
-            stack.pop(user);
-        } catch (NoSuchElementException e) {
-            user = userRepository.getOne(userId);
-            model.addAttribute("stack_empty_error", "true");
-        }
-
-        return returnView(model, user);
+        Dto dto = stackService.pop(userId);
+        return returnView(model, dto);
     }
 
     @GetMapping("/push")
     public String push(@RequestParam(value = "user_id") int userId, @RequestParam(value = "number") String numberText, Model model) {
-        User user = userRepository.getOne(userId);
-        try {
-            int number = Integer.parseInt(numberText);
-            stack.push(user, number);
-        } catch (NumberFormatException e) {
-        }
-
-        return returnView(model, user);
+        Dto dto = stackService.push(userId, numberText);
+        return returnView(model, dto);
     }
 
     @GetMapping("/reset")
-    public String rest(@RequestParam(value = "user_id") int userId, Model model) {
-        User user = userRepository.getOne(userId);
-        stack.reset(user);
-
-        return returnView(model, user);
+    public String reset(@RequestParam(value = "user_id") int userId, Model model) {
+        Dto dto = stackService.reset(userId);
+        return returnView(model, dto);
     }
 
-    private String returnView(Model model, User user) {
-        List<Integer> numbers = stack.view(user);
-        model.addAttribute("user_name", user.getName());
-        model.addAttribute("user_id", user.getId());
-        model.addAttribute("numbers", numbers);
+    private String returnView(Model model, Dto dto) {
+        model.addAttribute("user_name", dto.getUserName());
+        model.addAttribute("user_id", dto.getUserId());
+        model.addAttribute("numbers", dto.getNumbers());
         return "view";
     }
 
