@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Table(name = "stack")
-public class StackEntity {
+public class Stack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class StackEntity {
     @JoinColumn(name = "user_id", nullable = false)
     User user;
 
-    public StackEntity(int number, User user) {
+    public Stack(int number, User user) {
         this.number = number;
         this.user = user;
     }

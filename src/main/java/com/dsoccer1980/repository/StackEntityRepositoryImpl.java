@@ -1,6 +1,6 @@
 package com.dsoccer1980.repository;
 
-import com.dsoccer1980.model.StackEntity;
+import com.dsoccer1980.model.Stack;
 import com.dsoccer1980.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,15 +22,15 @@ public class StackEntityRepositoryImpl implements StackEntityRepository {
 
     @Override
     public void push(User user, int e) {
-        stackEntityRepository.save(new StackEntity(e, user));
+        stackEntityRepository.save(new Stack(e, user));
     }
 
     @Override
     public int pop(User user) throws NoSuchElementException {
         int maxId = stackEntityRepository.getMaxId(user.getId()).orElseThrow(NoSuchElementException::new);
-        StackEntity stackEntity = stackEntityRepository.findById(maxId).orElseThrow(NoSuchElementException::new);
+        Stack stack = stackEntityRepository.findById(maxId).orElseThrow(NoSuchElementException::new);
         stackEntityRepository.deleteById(maxId);
-        return stackEntity.getNumber();
+        return stack.getNumber();
     }
 
     @Override
@@ -43,8 +43,8 @@ public class StackEntityRepositoryImpl implements StackEntityRepository {
         return stackEntityRepository
                 .findByUserId(user.getId())
                 .stream()
-                .sorted(Comparator.comparingInt(StackEntity::getId).reversed())
-                .map(StackEntity::getNumber)
+                .sorted(Comparator.comparingInt(Stack::getId).reversed())
+                .map(Stack::getNumber)
                 .collect(Collectors.toList());
     }
 }

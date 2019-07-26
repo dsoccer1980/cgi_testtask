@@ -1,6 +1,6 @@
 package com.dsoccer1980.repository;
 
-import com.dsoccer1980.model.StackEntity;
+import com.dsoccer1980.model.Stack;
 import com.dsoccer1980.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,10 +33,10 @@ class StackEntityRepositoryImplTest {
         userRepository.save(USER1);
         userRepository.save(USER2);
         jpaStackEntityRepository.deleteAll();
-        jpaStackEntityRepository.save(new StackEntity(7, USER1));
-        jpaStackEntityRepository.save(new StackEntity(3, USER1));
-        jpaStackEntityRepository.save(new StackEntity(2, USER1));
-        jpaStackEntityRepository.save(new StackEntity(99, USER2));
+        jpaStackEntityRepository.save(new Stack(7, USER1));
+        jpaStackEntityRepository.save(new Stack(3, USER1));
+        jpaStackEntityRepository.save(new Stack(2, USER1));
+        jpaStackEntityRepository.save(new Stack(99, USER2));
     }
 
     @Test
