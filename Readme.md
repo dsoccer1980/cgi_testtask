@@ -13,18 +13,18 @@ They can be changed in file `application.yml` <br>
 
 To create tables for the first launch, please put `initialization-mode: always` instead of `initialization-mode: never` in `application.yml`.<br>
 Or you can use database dumb cgi.backup, that is attached to this project.<br><br>
-If you don't have PostgreSql and would like test, how to program is working, <br>
+If you don't have PostgreSql and would like to look, how program works, <br>
 please uncomment in file `application.yml` rows after `#To use embedded H2 database` and 
 comment rows after `#To use PostgreSql database`
 
- <br><br>
 
-##### Build
+
+##### Build program
 ```bash
 mvn clean install -DskipTests
 ```
 
-##### Run
+##### Run program
 ```bash
 java -jar cgi-testtask.jar
 ```
