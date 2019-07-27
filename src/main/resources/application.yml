@@ -1,3 +1,4 @@
+#To use PostgreSql database
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/cgi_db
@@ -13,3 +14,13 @@ spring:
         database-platform: org.hibernate.dialect.PostgreSQL9Dialect
 
 
+#To use embedded H2 database
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:cgi_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password:
+#    schema: classpath:schema-h2.sql
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
