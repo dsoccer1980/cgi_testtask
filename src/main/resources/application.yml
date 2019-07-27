@@ -3,7 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/cgi_db
     username: postgres
     password: postgres
-    initialization-mode: never
+    initialization-mode: never  #put always to create tables
   jpa:
     properties:
       hibernate:
