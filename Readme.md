@@ -23,6 +23,7 @@ comment rows after `#To use PostgreSql database`
 ```bash
 mvn clean install -DskipTests
 ```
+Move to the folder, where the file `cgi-testtask.jar` was created. `cd target`
 
 ##### Run program
 ```bash
