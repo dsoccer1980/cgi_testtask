@@ -17,7 +17,9 @@ If you don't have PostgreSql and would like to look, how program works, <br>
 please uncomment in file `application.yml` rows after `#To use embedded H2 database` and 
 comment rows after `#To use PostgreSql database`
 
-
+##### Download source code
+`git clone https://github.com/dsoccer1980/cgi_testtask.git` <br>
+`cd cgi_testtask`
 
 ##### Build program
 ```bash
