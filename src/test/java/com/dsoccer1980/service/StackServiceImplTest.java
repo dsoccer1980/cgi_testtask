@@ -54,9 +54,22 @@ class StackServiceImplTest {
     }
 
     @Test
+    void popWithEmptyStack() {
+        jpaStackEntityRepository.deleteAll();
+        UserNumbersDto dto = stackService.pop(USER1.getId());
+        assertThat(dto).isEqualTo(new UserNumbersDto(USER1.getName(), USER1.getId(), Collections.emptyList()));
+    }
+
+    @Test
     void push() {
         UserNumbersDto dto = stackService.push(USER1.getId(), "8");
         assertThat(dto).isEqualTo(new UserNumbersDto(USER1.getName(), USER1.getId(), Arrays.asList(8, 2, 3, 7)));
+    }
+
+    @Test
+    void pushNotNumber() {
+        UserNumbersDto dto = stackService.push(USER1.getId(), "wrong");
+        assertThat(dto).isEqualTo(new UserNumbersDto(USER1.getName(), USER1.getId(), Arrays.asList(2, 3, 7)));
     }
 
     @Test

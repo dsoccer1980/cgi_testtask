@@ -7,6 +7,8 @@ import com.dsoccer1980.repository.StackEntityRepositoryImpl;
 import com.dsoccer1980.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class StackServiceImpl implements StackService {
 
@@ -28,7 +30,7 @@ public class StackServiceImpl implements StackService {
         User user = getUserById(userId);
         try {
             stack.pop(user);
-        } catch (NumberFormatException e) {
+        } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
         return new UserNumbersDto(user.getName(), user.getId(), stack.view(user));
